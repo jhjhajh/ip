@@ -118,6 +118,7 @@ public class TaskList {
     }
 
     public static void deleteTask(String inputCommand) {
+        try {
         String taskToHandle = inputCommand.split(" ", 2)[1];
         int taskIndex = Integer.parseInt(taskToHandle) - 1;
         if (taskIndex < 0 || taskIndex >= tasks.size()) {
@@ -128,6 +129,9 @@ public class TaskList {
             Ui.printTask(currentTask);
             tasks.remove(taskIndex);
             Ui.printTaskSize();
+        }
+        } catch (IndexOutOfBoundsException e) {
+            Ui.printInvalidMessage("delete");
         }
     }
 }
